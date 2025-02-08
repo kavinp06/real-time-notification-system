@@ -3,7 +3,7 @@ package com.example.real.time.notification_System.entity;
 
 import jakarta.persistence.Entity;
 import lombok.Data;
-import javax.persistence.Id;
+import jakarta.persistence.Id;
 
 @Data
 @Entity
