@@ -5,6 +5,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.io.IOException;
+
 
 @RestController
 public class WebSocketController extends TextWebSocketHandler {
@@ -12,6 +14,10 @@ public class WebSocketController extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         // Broadcast message to all connected clients
-        session.sendMessage(new TextMessage("Broadcasting: " + message.getPayload()));
+        try {
+            session.sendMessage(new TextMessage("Broadcasting: " + message.getPayload()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
